@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Барбершоп УГОЛ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&family=Montserrat+Alternates:wght@500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Default (Dark/Loft) Mode */
+        --color-bg-main: #0B0B0B;
+        --color-bg-card: #1F1F1F;
+        --color-text-main: #F5F5F5;
+        --color-text-muted: #BDBDBD;
+        --color-accent: #2F7A5E;
+        --color-accent-bright: #66C28D;
+        --brick-blend: multiply;
+        --brick-opacity: 1;
+        --brick-image: url("https://images.unsplash.com/photo-1481277542470-605612bd2d61?q=80&w=2606&auto=format&fit=crop");
+      }
+
+      .light-mode {
+        /* Light/Day Mode */
+        --color-bg-main: #F8F9FA; /* Cleaner off-white */
+        --color-bg-card: #FFFFFF;
+        --color-text-main: #1A1A1A; /* Darker black for contrast */
+        --color-text-muted: #555555;
+        --color-accent: #2F7A5E;
+        --color-accent-bright: #27674F;
+        --brick-blend: soft-light;
+        --brick-opacity: 0.15;
+        --brick-image: url("https://www.transparenttextures.com/patterns/white-brick-wall.png");
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--color-bg-main);
+        color: var(--color-text-main);
+        transition: background-color 0.5s ease, color 0.5s ease;
+      }
+      h1, h2, h3, .font-heading {
+        font-family: 'Bebas Neue', sans-serif;
+      }
+      .font-sub {
+        font-family: 'Montserrat Alternates', sans-serif;
+      }
+      .font-mono {
+        font-family: 'Roboto Mono', monospace;
+      }
+      .brick-bg {
+        background-color: var(--color-bg-main);
+        background-image: var(--brick-image);
+        background-blend-mode: var(--brick-blend);
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        transition: background-color 0.5s ease;
+      }
+      .light-mode .brick-bg {
+         background-size: 300px; /* Repeat pattern for texture in light mode */
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--color-bg-main);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-bg-card);
+        border-radius: 4px;
+        border: 1px solid var(--color-bg-main);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-accent);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.29.2"
+  }
+}
+</script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            loft: {
+              black: 'var(--color-bg-main)',
+              dark: 'var(--color-bg-card)',
+              light: 'var(--color-text-main)',
+              gray: 'var(--color-text-muted)',
+              green: 'var(--color-accent)',
+              'green-bright': 'var(--color-accent-bright)',
+            }
+          },
+          fontFamily: {
+            heading: ['"Bebas Neue"', 'sans-serif'],
+            sub: ['"Montserrat Alternates"', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
