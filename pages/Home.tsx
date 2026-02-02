@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Zap, ShieldCheck, Beer, ArrowDown } from 'lucide-react';
 
-const ParallaxText = ({ children, baseVelocity = 100 }: { children: string; baseVelocity?: number }) => {
+const ParallaxText = ({ children, baseVelocity = 100 }: { children?: React.ReactNode; baseVelocity?: number }) => {
   return (
     <div className="overflow-hidden whitespace-nowrap flex flex-nowrap opacity-10 select-none pointer-events-none absolute top-0 left-0 right-0 z-0">
       <motion.div 
@@ -46,10 +46,10 @@ const Home: React.FC = () => {
         {/* Background Overlay */}
         <div className="absolute inset-0 bg-black/60 z-10"></div>
         
-        {/* Parallax Background Image */}
+        {/* Parallax Background Image - Reliable URL */}
         <motion.div 
             style={{ y: y1, scale: scaleHero }}
-            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1593702295094-aea8c5c13589?q=80&w=2600&auto=format&fit=crop')] bg-cover bg-center z-0"
+            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2600&auto=format&fit=crop')] bg-cover bg-center z-0"
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full text-center">

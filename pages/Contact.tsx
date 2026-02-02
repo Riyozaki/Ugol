@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
              <span className="text-loft-gray font-heading text-2xl uppercase tracking-widest bg-loft-black/80 px-4 py-2">Карта загружается...</span>
           </div>
           {/* Simulate map view */}
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30 grayscale group-hover:opacity-40 transition-all duration-700"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-30 grayscale group-hover:opacity-40 transition-all duration-700"></div>
         </div>
       </div>
     </motion.div>

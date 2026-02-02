@@ -19,20 +19,22 @@
         --color-accent-bright: #66C28D;
         --brick-blend: multiply;
         --brick-opacity: 1;
-        --brick-image: url("https://images.unsplash.com/photo-1481277542470-605612bd2d61?q=80&w=2606&auto=format&fit=crop");
+        /* Reliable Dark Brick Wall */
+        --brick-image: url("https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=2000&auto=format&fit=crop");
       }
 
       .light-mode {
         /* Light/Day Mode */
-        --color-bg-main: #F8F9FA; /* Cleaner off-white */
+        --color-bg-main: #F8F9FA;
         --color-bg-card: #FFFFFF;
-        --color-text-main: #1A1A1A; /* Darker black for contrast */
+        --color-text-main: #1A1A1A;
         --color-text-muted: #555555;
         --color-accent: #2F7A5E;
         --color-accent-bright: #27674F;
         --brick-blend: soft-light;
-        --brick-opacity: 0.15;
-        --brick-image: url("https://www.transparenttextures.com/patterns/white-brick-wall.png");
+        --brick-opacity: 0.3;
+        /* Reliable White Brick Wall */
+        --brick-image: url("https://images.unsplash.com/photo-1493397212122-2b85dda8106b?q=80&w=2000&auto=format&fit=crop");
       }
 
       body {
@@ -60,7 +62,7 @@
         transition: background-color 0.5s ease;
       }
       .light-mode .brick-bg {
-         background-size: 300px; /* Repeat pattern for texture in light mode */
+         background-size: cover; 
       }
 
       /* Custom scrollbar */

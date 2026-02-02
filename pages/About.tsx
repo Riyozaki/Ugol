@@ -14,7 +14,7 @@ const About: React.FC = () => {
           <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-loft-gray"></div>
           <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-loft-gray"></div>
           <img 
-            src="https://images.unsplash.com/photo-1600948836101-f60c27171194?q=80&w=1000&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1503951914875-befbb7135952?q=80&w=1000&auto=format&fit=crop" 
             alt="Interior" 
             className="w-full h-auto rounded-sm shadow-2xl grayscale"
           />

@@ -21,6 +21,8 @@ export const mastersList: Barber[] = [
     id: '1', 
     name: 'Артем Гришанков', 
     role: 'Топ-Барбер', 
-    image: 'photo/artem.jpg' 
+    // Using direct path to avoid module import errors in browser-native environments.
+    // If this fails, the Masters component will show a fallback.
+    image: '/src/photo/artem.jpg' 
   },
 ];
