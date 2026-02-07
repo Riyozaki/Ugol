@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronLeft, AlertCircle, Loader2 } from 'lucide-react';
 import { servicesList, mastersList } from '../data';
 import { submitBookingToGoogleSheets, fetchExistingBookings, ExistingBooking, BookingData } from '../api';
+import { ServiceItem } from '../types';
 
 const Booking: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -38,6 +39,10 @@ const Booking: React.FC = () => {
 
   // Find selected barber details
   const barberDetails = mastersList.find(b => b.id === selectedBarber);
+
+  // Filter services by category
+  const basicServices = servicesList.filter(s => s.category === 'basic');
+  const additionalServices = servicesList.filter(s => s.category === 'additional');
 
   // Time Validation Logic
   const validateTime = (dt: string): boolean => {
@@ -184,6 +189,26 @@ const Booking: React.FC = () => {
   
   const prevStep = () => setStep(step - 1);
 
+  // Helper to render service card
+  const renderServiceCard = (service: ServiceItem) => (
+    <div 
+        key={service.id}
+        onClick={() => handleServiceToggle(service.id)}
+        className={`p-4 border-2 cursor-pointer transition-all flex justify-between items-center group ${selectedServices.includes(service.id) ? 'bg-loft-dark border-loft-green' : 'bg-loft-black border-loft-dark hover:border-loft-gray'}`}
+    >
+        <div>
+            <p className="font-heading text-lg text-loft-light uppercase tracking-wide">{service.title}</p>
+            <p className="text-xs text-loft-gray font-mono">{service.durationDisplay}</p>
+        </div>
+        <div className="flex items-center gap-4">
+            <span className={`font-mono font-bold ${selectedServices.includes(service.id) ? 'text-loft-green-bright' : 'text-loft-gray'}`}>{service.price} ₽</span>
+            <div className={`w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${selectedServices.includes(service.id) ? 'bg-loft-green border-loft-green' : 'border-loft-gray'}`}>
+                {selectedServices.includes(service.id) && <Check className="w-4 h-4 text-white" />}
+            </div>
+        </div>
+    </div>
+  );
+
   if (isSuccess) {
     return (
        <div className="min-h-[60vh] flex items-center justify-center px-4">
@@ -214,7 +239,7 @@ const Booking: React.FC = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-4 py-12">
       <div className="text-center mb-12">
         <h2 className="font-heading text-5xl font-bold text-loft-light mb-4 uppercase">Запись</h2>
         {/* Progress Bar */}
@@ -232,25 +257,22 @@ const Booking: React.FC = () => {
                 {step === 1 && (
                     <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
                         <h3 className="font-sub text-2xl text-loft-light font-bold mb-6">1. Выберите услуги</h3>
-                        <div className="space-y-3">
-                            {servicesList.map(service => (
-                                <div 
-                                    key={service.id}
-                                    onClick={() => handleServiceToggle(service.id)}
-                                    className={`p-4 border-2 cursor-pointer transition-all flex justify-between items-center group ${selectedServices.includes(service.id) ? 'bg-loft-dark border-loft-green' : 'bg-loft-black border-loft-dark hover:border-loft-gray'}`}
-                                >
-                                    <div>
-                                        <p className="font-heading text-lg text-loft-light uppercase tracking-wide">{service.title}</p>
-                                        <p className="text-xs text-loft-gray font-mono">{service.durationDisplay}</p>
-                                    </div>
-                                    <div className="flex items-center gap-4">
-                                        <span className={`font-mono font-bold ${selectedServices.includes(service.id) ? 'text-loft-green-bright' : 'text-loft-gray'}`}>{service.price} ₽</span>
-                                        <div className={`w-6 h-6 rounded-full border flex items-center justify-center transition-colors ${selectedServices.includes(service.id) ? 'bg-loft-green border-loft-green' : 'border-loft-gray'}`}>
-                                            {selectedServices.includes(service.id) && <Check className="w-4 h-4 text-white" />}
-                                        </div>
-                                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            {/* Basic Services Column */}
+                            <div>
+                                <h4 className="font-heading text-xl text-loft-gray mb-4 border-b border-loft-gray/20 pb-2 uppercase tracking-wide">Основные</h4>
+                                <div className="space-y-3">
+                                    {basicServices.map(renderServiceCard)}
                                 </div>
-                            ))}
+                            </div>
+
+                            {/* Additional Services Column */}
+                            <div>
+                                <h4 className="font-heading text-xl text-loft-gray mb-4 border-b border-loft-gray/20 pb-2 uppercase tracking-wide">Дополнительные</h4>
+                                <div className="space-y-3">
+                                    {additionalServices.map(renderServiceCard)}
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 )}

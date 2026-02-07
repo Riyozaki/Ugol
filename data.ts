@@ -19,7 +19,7 @@ export const servicesList: ServiceItem[] = [
 export const mastersList: Barber[] = [
   { 
     id: '1', 
-    name: 'Артем Гришанков', 
+    name: 'Артем', 
     role: 'Топ-Барбер', 
     // Using direct path to avoid module import errors in browser-native environments.
     // If this fails, the Masters component will show a fallback.
